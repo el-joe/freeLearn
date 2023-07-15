@@ -39,7 +39,6 @@ class File extends Model
         return '';
     }
 
-
     public function model()
     {
         return $this->morphTo();

@@ -20,7 +20,7 @@
             <label for="image">Image</label>
             <input type="file" name="image" id="image" class="form-control">
             @isset($subject)
-                <img src="{{$subject->image?->file_path}}" alt="" class="previosImage" width="100" height="100px">
+                <img src="{{$subject->image->file_path}}" alt="" class="previosImage" width="100" height="100px">
             @endisset
         </div>
         <button type="submit" class="btn btn-primary">Save</button>

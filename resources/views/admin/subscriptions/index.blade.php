@@ -1,6 +1,6 @@
 @extends('admin.layout.index')
 
-@section('title', 'Subjects')
+@section('title', 'Subscriptions')
 
 @section('content')
 <div class="content-panel" style="margin:20px">
@@ -9,24 +9,17 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Image</th>
-            <th>Actions</th>
+            <th>IP</th>
+            <th>Amount</th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($subjects as $subject)
+          @foreach ($subscriptions as $subscription)
             <tr>
-                <td>{{$subject->id}}</td>
-                <td>{{$subject->name}}</td>
-                <td>{{$subject->description}}</td>
+                <td>{{$subscription->id}}</td>
+                <td>{{$subscription->ip}}</td>
                 <td>
-                    <img src="{{optional($subject->image)->file_path}}" alt="" height="100">
-                </td>
-                <td>
-                    <a href="{{route('admin.subjects.edit', $subject->id)}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                    <a href="{{route('admin.subjects.destroy', $subject->id)}}" class="btn btn-danger btn-xs deleteThis"><i class="fa fa-trash-o "></i></a>
+                    {{$subscription->amount}}
                 </td>
           @endforeach
         </tbody>

@@ -15,7 +15,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = Subject::with('image')->get();
+        $subjects = Subject::latest()->get();
+
         return view('admin.subjects.index', get_defined_vars());
     }
 
@@ -86,7 +87,8 @@ class SubjectController extends Controller
         $subject->update($request->only(['name','description']));
 
         if ($request->hasFile('image')) {
-            $subject->image()->delete()->create(['file' => $request->file('image'),'type' => 'image']);
+            $subject->image()->delete();
+            $subject->image()->create(['file' => $request->file('image'),'type' => 'image']);
         }
 
         return redirect()->route('admin.subjects.index')->with('success','Subject updated successfully!');;

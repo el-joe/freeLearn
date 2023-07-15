@@ -4,10 +4,13 @@ use App\Http\Controllers\Admin\AcademicYearController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\SubjectController;
+use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\Web\WebController;
 use App\Models\Subscription;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Storage;
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['guest:admin'])->group(function () {
@@ -50,5 +53,22 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('lessons',LessonController::class);
         Route::get('lessons/{lesson}/exam',[LessonController::class,'exam'])->name('lesson.exam');
         Route::post('lessons/{lesson}/exam',[LessonController::class,'examUpdate'])->name('lesson.examUpdate');
+
+        Route::get('subscriptions',[SubscriptionController::class,'index'])->name('subscriptions.index');
     });
 });
+
+
+Route::get('/',[WebController::class,'home'])->name('home');
+Route::get('subjects',[WebController::class,'subjects'])->name('subjects');
+Route::get('years/{subjectId}',[WebController::class,'years'])->name('years');
+Route::get('playlist/y{yearId}-sub{subjectId}-s{semester}',[WebController::class,'playlist'])->name('playlist');
+Route::get('video/{lessonId}',[WebController::class,'video'])->name('video');
+Route::get('video-path', function (){
+    $fileContent = file_get_contents(Storage::disk('public')->url(request('path')));
+    $response = Response::make($fileContent, 200);
+
+    $response->header('Content-Type', "video/mp4");
+    return $response;
+})->name('local.temp');
+Route::view('exam','web.exam');

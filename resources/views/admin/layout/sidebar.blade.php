@@ -8,6 +8,11 @@
             'icon' => 'fa fa-dashboard'
         ],
         [
+            'name' => 'Subscriptions',
+            'route' => 'admin.subscriptions.index',
+            'icon' => 'fa fa-dashboard'
+        ],
+        [
             'name' => 'Subjects',
             'icon' => 'fa fa-desktop',
             'sub'=> [
