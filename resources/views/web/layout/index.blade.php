@@ -12,7 +12,10 @@
 
 <body class="antialiased">
     @include('web.layout.navbar')
-    @yield('content')
+    <div style="min-height: calc(100vh - 440px)">
+
+        @yield('content')
+    </div>
     @include('web.layout.footer')
 
     @include('web.layout.scripts')
