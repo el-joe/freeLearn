@@ -59,7 +59,13 @@
                     'icon' => 'fa fa-desktop',
                 ]
             ]
-        ]
+        ],
+        [
+            'name' => 'Contact Us Messages',
+            'route' => 'admin.contacts.index',
+            'icon' => 'fa fa-dashboard'
+        ],
+
     ]));
     @endphp
     <div id="sidebar" class="nav-collapse ">

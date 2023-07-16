@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
@@ -104,5 +105,12 @@ class SubjectController extends Controller
     {
         Subject::findOrFail($id)->delete();
         return redirect()->route('admin.subjects.index')->with('success','Subject deleted successfully!');;
+    }
+
+    public function contacts()
+    {
+        $contacts = Contact::latest()->get();
+
+        return view('admin.contacts.index', get_defined_vars());
     }
 }

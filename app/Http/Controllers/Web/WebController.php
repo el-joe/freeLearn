@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Mail\ContactMail;
 use App\Models\AcademicYear;
+use App\Models\Contact;
 use App\Models\Lesson;
 use App\Models\Subject;
 use Illuminate\Http\Request;
@@ -56,7 +57,8 @@ class WebController extends Controller
 
     public function contactUsPost(Request $request)
     {
-        Mail::to('eljoe1717@gmail.com')->send(new ContactMail($request->all()));
+        // Mail::to('eljoe1717@gmail.com')->send(new ContactMail($request->all()));
+        Contact::create($request->all());
 
         return back()->with('success','Message sent successfully');
     }

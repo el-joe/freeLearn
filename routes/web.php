@@ -49,6 +49,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         })->name('dashboard');
 
         Route::resource('subjects',SubjectController::class);
+        Route::get('contacts',[SubjectController::class,'contacts'])->name('contacts.index');
         Route::resource('academic-years',AcademicYearController::class);
         Route::resource('lessons',LessonController::class);
         Route::get('lessons/{lesson}/exam',[LessonController::class,'exam'])->name('lesson.exam');
