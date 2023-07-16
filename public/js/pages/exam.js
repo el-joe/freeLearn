@@ -71,7 +71,7 @@ function textQ(index , question = undefined) {
     return `
     <div class="form-group col-sm-9 text-q">
         <label for="question">Question</label>
-        <input type="text" name="question[${index}][source]" id="question" value="${question?.source}" class="form-control" placeholder="Enter Question">
+        <input type="text" name="question[${index}][source]" id="question" value="${question?.source ?? ''}" class="form-control" placeholder="Enter Question">
     </div>
     `;
 }
@@ -83,7 +83,7 @@ function imageQ(index ,question = undefined) {
             <input type="file" name="question[${index}][source]" id="question" class="form-control">
         </div>
         <div class="form-group col-sm-2 image-q">
-            <a class="btn btn-success" data-toggle="modal" data-target="#myModal" onclick="showImage('${question.source}')" style="margin-top: 23px">
+            <a class="btn btn-success" data-toggle="modal" data-target="#myModal" onclick="showImage('${question?.source ?? ''}')" style="margin-top: 23px">
                 Current Image
             </a>
         </div>
@@ -94,7 +94,7 @@ function textS(qIndex , sIndex , selection = undefined) {
     return `
     <div class="form-group col-sm-9 text-s">
         <label for="selection">Selection</label>
-        <input type="text" name="question[${qIndex}][selection][${sIndex}][source]" id="selection" value="${selection?.source}" class="form-control" placeholder="Enter Selection">
+        <input type="text" name="question[${qIndex}][selection][${sIndex}][source]" id="selection" value="${selection?.source ?? ''}" class="form-control" placeholder="Enter Selection">
     </div>
     `;
 }
@@ -106,7 +106,7 @@ function imageS(qIndex , sIndex ,selection = undefined) {
             <input type="file" name="question[${qIndex}][selection][${sIndex}][source]" id="selection" class="form-control">
         </div>
         <div class="form-group col-sm-2 image-s">
-            <a class="btn btn-success" data-toggle="modal" data-target="#myModal" onclick="showImage('${selection.source}')" style="margin-top: 23px">
+            <a class="btn btn-success" data-toggle="modal" data-target="#myModal" onclick="showImage('${selection?.source ?? ''}')" style="margin-top: 23px">
                 Current Image
             </a>
         </div>
@@ -171,7 +171,6 @@ function addNewQ(){
 function showImage(image) {
     $('#myModal .modal-body').empty().append(`<img src="${image}" class="img-responsive">`);
 }
-
 state.questions.map((questionObj,index)=>{
     $('.questions').append(question(index+1,questionObj));
 });

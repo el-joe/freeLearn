@@ -18,7 +18,7 @@
                     <path x-show="!open" fill-rule="evenodd"
                         d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
                         clip-rule="evenodd"></path>
-                    
+
                 </svg>
             </button>
         </div>
@@ -39,10 +39,7 @@
                 href="/subjects">Subjects</a>
 
             <a class="px-4 py-2 mt-2 text-lg font-medium mr-auto bg-transparent rounded-lg sm:mt-8 sm:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
-                href="/subjects">About Us</a>
-
-            <a class="px-4 py-2 mt-2 text-lg font-medium mr-auto bg-transparent rounded-lg sm:mt-8 sm:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
-                href="/subjects">Contact Us</a>
+                href="/contact-us">Contact Us</a>
                 <div class="sm:hidden">
 
                     @include('web.layout.footer')
