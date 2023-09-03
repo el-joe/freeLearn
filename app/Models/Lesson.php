@@ -10,7 +10,7 @@ class Lesson extends Model
     use HasFactory;
 
     protected $fillable = [
-        'subject_id','academic_year_id','name','description','price','semester','expire_hours'
+        'subject_id','academic_year_id','name','description','price','semester','expire_hours','active'
     ];
 
     public function subject()

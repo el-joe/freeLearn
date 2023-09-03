@@ -8,7 +8,7 @@
         </h1>
         <div class="flex flex-col mt-20 gap-10">
             <div data-aos="fade-left" class="relative mt-20 sm:mt-0">
-                <video class="rounded-lg shadow-lg w-full" src="{{ $lesson->video?->file_path }}" poster="{{$lesson->thumb?->file_path}}" controls></video>
+                <video class="rounded-lg shadow-lg w-full" src="{{ $lesson->video?->file_path }}" poster="{{$lesson->thumb?->file_path}}" controlsList="nodownload" controls></video>
                 {{-- <span
                     class="bg-white w-40 h-40 text-5xl font-medium rounded-full flex items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transform transition duration-300 ease-in-out z-0">
                     20
@@ -27,3 +27,26 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+<script src="{{asset('adminLayout/lib/jquery/jquery.min.js')}}"></script>
+
+<script>
+    $(document).keydown(function (event) {
+        if (event.keyCode == 123) { // Prevent F12
+            return false;
+        } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I
+            return false;
+        }else if (event.ctrlKey && (event.keyCode === 85)) {//Alt+u
+            return false;
+        }
+
+    });
+
+    $(document).on("contextmenu", function (e) {
+        e.preventDefault();
+    });
+
+
+</script>
+@endpush

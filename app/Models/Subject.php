@@ -17,4 +17,8 @@ class Subject extends Model
     {
         return $this->morphOne(File::class, 'model')->where('type', 'image');
     }
+
+    function lessons() {
+        return $this->hasMany(Lesson::class,'subject_id');
+    }
 }

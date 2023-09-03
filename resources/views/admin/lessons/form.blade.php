@@ -39,15 +39,19 @@
             <label for="description">Description</label>
             <textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Enter Lesson description">{{isset($lesson->description) ? $lesson->description : ''}}</textarea>
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="price">Price *</label>
             <input type="number" name="price" id="price" value="{{isset($lesson->price) ? $lesson->price : ''}}" class="form-control" placeholder="15.00">
-        </div>
-        <div class="form-group">
+        </div> --}}
+        <div class="form-group col-sm-9">
             <label for="expire_hours">Expire Hours *</label>
             <input type="number" name="expire_hours" id="expire_hours" value="{{isset($lesson->expire_hours) ? $lesson->expire_hours : ''}}" class="form-control" placeholder="4">
         </div>
-        <div class="form-group imageInputWithPreviosImage">
+        <div class="form-group col-sm-3">
+            <label for="active">Active</label>
+            <input type="checkbox" class="" name="active" id="active" {{isset($lesson) && $lesson->active == 1 ? 'checked' : ''}}>
+        </div>
+        <div class="form-group col-sm-12 imageInputWithPreviosImage">
             <label for="thumb">Thumb</label>
             <input type="file" name="thumb" id="thumb" class="form-control">
             @isset($lesson)
@@ -55,7 +59,7 @@
             @endisset
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-sm-12">
             <label for="video">Video</label>
             <input type="file" name="video" id="video" class="form-control">
             @isset($lesson)

@@ -17,18 +17,18 @@
 
 
                     <div class="flex gap-3 mx-auto w-full justify-center" role="group">
-                        <a href="{{ route('playlist', [$year->id, $subjectId, 1]) }}"
+                        <a href="{{ route('subjects', [$type,$year->id, 1]) }}"
                             class="border border-green-600 rounded-lg flex items-center p-5 hover:shadow-xl overflow-hidden">
                             Semester 1
                         </a>
-                        <a href="{{ route('playlist', [$year->id, $subjectId, 2]) }}"
+                        <a href="{{ route('subjects', [$type, $year->id, 2]) }}"
                             class="border border-green-600 rounded-lg flex items-center p-5 hover:shadow-xl overflow-hidden">
                             Semester 2
                         </a>
                     </div>
                 </div>
             @endforeach
-    
+
         </div>
     </div>
 @endsection

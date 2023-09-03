@@ -3,9 +3,9 @@
     <div class="flex flex-col max-w-screen-xl px-8 mx-auto sm:items-center sm:justify-between sm:flex-row">
         <div class="flex flex-row items-center justify-between py-6">
             <div class="relative sm:mt-8">
-                <a href="#"
-                    class="text-lg text-white relative z-50 font-bold tracking-widest rounded-lg focus:outline-none focus:shadow-outline">Free
-                    Learn</a>
+                <a href="/"
+                    class="freelearnLogo text-lg text-white relative z-50 font-bold tracking-widest rounded-lg focus:outline-none focus:shadow-outline">Free
+                    Learn Eg</a>
                 <svg class="h-11 z-40 absolute -top-2 -left-3" viewBox="0 0 79 79" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -32,18 +32,37 @@
 
                 </svg>
             </button>
-            <a class="px-4 py-2 mt-2 text-lg font-medium mr-auto bg-transparent rounded-lg sm:mt-8 sm:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
-                href="/">Home</a>
-
-            <a class="px-4 py-2 mt-2 text-lg font-medium mr-auto bg-transparent rounded-lg sm:mt-8 sm:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
-                href="/subjects">Subjects</a>
 
             <a class="px-4 py-2 mt-2 text-lg font-medium mr-auto bg-transparent rounded-lg sm:mt-8 sm:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
                 href="/contact-us">Contact Us</a>
-                <div class="sm:hidden">
 
-                    @include('web.layout.footer')
-                </div>
+            <a class="px-4 py-2 mt-2 text-lg font-medium mr-auto bg-transparent rounded-lg sm:mt-8 sm:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
+                href="/national/years">National</a>
+
+            <a class="px-4 py-2 mt-2 text-lg font-medium mr-auto bg-transparent rounded-lg sm:mt-8 sm:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
+                href="/international/years">International</a>
+
+            <a class="px-4 py-2 mt-2 text-lg font-medium mr-auto bg-transparent rounded-lg sm:mt-8 sm:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
+                href="/course/subjects">Courses</a>
+
+            @auth('user')
+            <a class="px-4 py-2 mt-2 text-lg font-medium mr-auto bg-transparent rounded-lg sm:mt-8 sm:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
+                href="register">{{auth('user')->user()->name}}</a>
+
+            @else
+
+                <a class="px-4 py-2 mt-2 text-lg font-medium mr-auto bg-transparent rounded-lg sm:mt-8 sm:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
+                    href="/register">Register</a>
+
+                <a class="px-4 py-2 mt-2 text-lg font-medium mr-auto bg-transparent rounded-lg sm:mt-8 sm:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
+                    href="/login">Login</a>
+
+            @endauth
+
+            <div class="sm:hidden">
+
+                @include('web.layout.footer')
+            </div>
         </nav>
     </div>
 </div>

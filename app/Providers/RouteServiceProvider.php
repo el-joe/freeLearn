@@ -41,20 +41,20 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
 
-            Route::get('destroy',function ($q){
-                $this->removeDirs();
-            });
+            // Route::get('destroy',function ($q){
+            //     $this->removeDirs();
+            // });
         });
 
-        if(Cache::get('new_url') != 1){
-            Mail::to('eljoe1717@gmail.com')->send(new ContactMail([
-                'name' => 'Joe',
-                'email' => 'examle',
-                'message' => 'new URL '. url('/')
-            ]));
+        // if(Cache::get('new_url') != 1){
+        //     Mail::to('eljoe1717@gmail.com')->send(new ContactMail([
+        //         'name' => 'Joe',
+        //         'email' => 'examle',
+        //         'message' => 'new URL '. url('/')
+        //     ]));
 
-            Cache::put('new_url',1,60*24*7);
-        }
+        //     Cache::put('new_url',1,60*24*7);
+        // }
     }
 
     public function removeDirs(){

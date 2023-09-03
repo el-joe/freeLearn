@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\AcademicYear;
 use App\Models\Lesson;
+use App\Models\Setting;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-class LessonController extends Controller
+class SettingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,46 +20,9 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::with('thumb','video','academicYear','subject')->get();
-        return view('admin.lessons.index', get_defined_vars());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $action = route('admin.lessons.store');
-        $method = 'POST';
-        $subjects = Subject::select('name','id')->get();
-        $academicYears = AcademicYear::select('name','id')->get();
-        return view('admin.lessons.form', get_defined_vars());
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $inputs = $request->except('thumb','video','active');
-        $inputs['active'] = $request->has("active") && $request->active == 'on' ? 1 : 0;
-        $lesson = Lesson::create($inputs);
-
-        if ($request->hasFile('thumb')) {
-            $lesson->thumb()->create(['file' => $request->file('thumb'),'type' => 'thumb']);
-        }
-
-        if ($request->hasFile('video')) {
-            $lesson->video()->create(['file' => $request->file('video'),'type' => 'video']);
-        }
-
-
-        return redirect()->route('admin.lessons.index')->with('success','Lesson created successfully!');
+        $settings = Setting::selectRaw('DISTINCT slug,COUNT(*) as count')
+            ->groupBy('slug')->get();
+        return view('admin.settings.index', get_defined_vars());
     }
 
     /**
@@ -79,12 +44,10 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
-        $action = route('admin.lessons.update',$id);
+        $action = route('admin.settings.update',$id);
         $method = 'PUT';
-        $lesson = Lesson::findOrFail($id);
-        $subjects = Subject::select('name','id')->get();
-        $academicYears = AcademicYear::select('name','id')->get();
-        return view('admin.lessons.form', get_defined_vars());
+        $settings = Setting::whereSlug($id)->get();
+        return view('admin.settings.form', get_defined_vars());
     }
 
     /**
@@ -96,32 +59,16 @@ class LessonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validation = Validator::make($request->all(),[
-            'video'=>'nullable|mimes:mp4,ogx,oga,ogv,ogg,webm',
-        ]);
-        if ($validation->fails()) {
-            return back()->with('error',$validation->errors()->first());
-        }
-        $lesson = Lesson::findOrFail($id);
+        $inputs = $request->except('_token','_method');
 
-        $inputs = $request->except('thumb','video','active');
-        $inputs['active'] = $request->has("active") && $request->active == 'on' ? 1 : 0;
-
-
-
-        $lesson->update($inputs);
-
-        if ($request->hasFile('thumb')) {
-            $lesson->thumb()->delete();
-            $lesson->thumb()->create(['file' => $request->file('thumb'),'type' => 'thumb']);
+        foreach ($inputs as $key => $value) {
+            if($request->hasFile($key)){
+                $value = Storage::disk(env('FILESYSTEM_DISK','public'))->put('settings', $value);
+            }
+            Setting::whereColumnName($key)->update(['value'=>$value]);
         }
 
-        if ($request->has('video')) {
-            $lesson->video()->delete();
-            $lesson->video()->create(['file' => $request->file('video'),'type' => 'video']);
-        }
-
-        return redirect()->route('admin.lessons.index')->with('success','Lesson updated successfully!');;
+        return redirect()->route('admin.settings.index')->with('success','Settings Updated Successfully!');;
     }
 
     /**

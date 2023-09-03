@@ -20,10 +20,10 @@
         <div class="w-full lg:w-6/12 lg:-mt-10 relative" id="girl">
             <img data-aos="fade-up" data-aos-once="true" class="w-10/12 mx-auto 2xl:-mb-20" src="{{asset('website/img/girl.png')}}" />
             <!-- calendar -->
-            <div data-aos="fade-up" data-aos-delay="300" data-aos-once="true"
+            {{-- <div data-aos="fade-up" data-aos-delay="300" data-aos-once="true"
                 class="absolute top-20 -left-6 sm:top-32 sm:left-10 md:top-40 md:left-16 lg:-left-0 lg:top-52 floating-4">
                 <img class="bg-white bg-opacity-80 rounded-lg h-12 sm:h-16" src="{{asset('website/img/calendar.svg')}}" />
-            </div>
+            </div> --}}
             <!-- red -->
             <div data-aos="fade-up" data-aos-delay="400" data-aos-once="true"
                 class="absolute top-20 right-10 sm:right-24 sm:top-28 md:top-36 md:right-32 lg:top-32 lg:right-16 floating">
@@ -87,17 +87,32 @@
             <a href="" class="underline">Learn More</a>
         </div>
         <div data-aos="fade-left" class="sm:w-1/2 relative mt-10 sm:mt-0">
-            <div style="background: #23bdee" class="floating w-24 h-24 absolute rounded-lg z-0 -top-3 -left-3">
+            <div class="main-video-component">
+                <div style="background: #23bdee" class="floating w-24 h-24 absolute rounded-lg z-0 -top-3 -left-3">
+                </div>
+                <img class="rounded-xl z-40 relative home-video-thumb" src="{{asset('website/img/teacher-explaining.png')}}" alt="" />
+                <button onclick="playVideo(event)"
+                    class="bg-white w-14 h-14 rounded-full flex items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 focus:outline-none transform transition hover:scale-110 duration-300 ease-in-out z-50">
+                    <svg class="w-5 h-5 ml-1" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M22.5751 12.8097C23.2212 13.1983 23.2212 14.135 22.5751 14.5236L1.51538 27.1891C0.848878 27.5899 5.91205e-07 27.1099 6.25202e-07 26.3321L1.73245e-06 1.00123C1.76645e-06 0.223477 0.848877 -0.256572 1.51538 0.14427L22.5751 12.8097Z"
+                            fill="#23BDEE" />
+                    </svg>
+
+                </button>
             </div>
-            <img class="rounded-xl z-40 relative" src="{{asset('website/img/teacher-explaining.png')}}" alt="" />
-            <button
-                class="bg-white w-14 h-14 rounded-full flex items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 focus:outline-none transform transition hover:scale-110 duration-300 ease-in-out z-50">
-                <svg class="w-5 h-5 ml-1" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M22.5751 12.8097C23.2212 13.1983 23.2212 14.135 22.5751 14.5236L1.51538 27.1891C0.848878 27.5899 5.91205e-07 27.1099 6.25202e-07 26.3321L1.73245e-06 1.00123C1.76645e-06 0.223477 0.848877 -0.256572 1.51538 0.14427L22.5751 12.8097Z"
-                        fill="#23BDEE" />
+            <div class="text-center mt-5">
+                {{$views}}
+            </div>
+            <div class="flex justify-center items-center">
+                <svg class="h-6 text-gray-700 " fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewbox="0 0 576 512">
+                    <path fill="currentColor"
+                    d="M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z">
+                    </path>
                 </svg>
-            </button>
+            </div>
             <div class="bg-green-500 w-40 h-40 floating absolute rounded-lg z-10 -bottom-3 -right-3"></div>
         </div>
     </div>
@@ -115,8 +130,8 @@
     </div>
     <!-- card -->
     <div class="grid md:grid-cols-3 gap-14 md:gap-5 mt-20">
-        @foreach ($subjects as $subject)
-            <a href="{{route('years',$subject->id)}}" data-aos="fade-up"
+        @foreach (['national','international','course'] as $subject)
+            <a href="{{route('years',$subject)}}" data-aos="fade-up"
                 class="bg-white shadow-xl p-6 text-center rounded-xl duration-300 hover:scale-105 cursor-pointer">
                 <div style="background: #5b72ee"
                     class="rounded-full w-16 h-16 flex items-center justify-center mx-auto shadow-lg transform -translate-y-12">
@@ -128,19 +143,19 @@
                     </svg>
                 </div>
                 <h1 class="font-medium text-xl mb-3 lg:px-14 text-darken">
-                    {{$subject->name}}
+                    {{strtoupper($subject)}}
                 </h1>
-                <p class="px-4 text-gray-500">
+                {{-- <p class="px-4 text-gray-500">
                     {!! $subject->description !!}
-                </p>
+                </p> --}}
             </a>
         @endforeach
     </div>
-    <div class="flex justify-center items-center mt-4" data-aos="fade-up" data-aos-delay="150">
+    {{-- <div class="flex justify-center items-center mt-4" data-aos="fade-up" data-aos-delay="150">
         <a href="/subjects" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Load More
         </a>
-    </div>
+    </div> --}}
 
     <!-- Assessments, Quizzes, Tests -->
     <div class="mt-20 flex flex-col-reverse md:flex-row items-center md:space-x-10">
@@ -160,3 +175,21 @@
 </div>
 <!-- .container -->
 @endsection
+
+@push('scripts')
+    <script src="{{asset('adminLayout/lib/jquery/jquery.min.js')}}"></script>
+    <script>
+        function playVideo(e){
+            $(e.currentTarget).parents('.main-video-component').empty()
+            .append('<video class="rounded-lg shadow-lg w-full" src="{{asset("website/video/home-video.webm")}}" autoplay="1" controls></video>');
+
+            $.ajax({
+                url : "/update-views",
+                method : 'POST',
+                data : {
+                    _token : "{{csrf_token()}}"
+                }
+            });
+        }
+    </script>
+@endpush

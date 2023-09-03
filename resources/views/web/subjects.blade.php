@@ -9,7 +9,13 @@
         <!-- card -->
         <div class="grid md:grid-cols-3 gap-14 md:gap-5 mt-20 py-20">
             @foreach ($subjects as $subject)
-            <a  href="{{route('years',$subject->id)}}" data-aos="fade-up"
+            <?php $data = base64_encode(json_encode([
+                'type'=>$type,
+                'yearId'=>$yearId,
+                'semester'=>$semester,
+                'subjectId'=> $subject->id
+            ])); ?>
+            <a  href="{{route('playlist',$data)}}" data-aos="fade-up"
                 class="bg-white shadow-xl p-6 text-center rounded-xl duration-300 hover:scale-105 cursor-pointer">
                 <div style="background: #5b72ee"
                     class="rounded-full w-16 h-16 flex items-center justify-center mx-auto shadow-lg transform -translate-y-12">
