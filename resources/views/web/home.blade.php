@@ -145,8 +145,10 @@
                 <h1 class="font-medium text-xl mb-3 lg:px-14 text-darken">
                     {{strtoupper($subject)}}
                 </h1>
+                <p>
+                    {!! $subject !!}
+                </p>
                 {{-- <p class="px-4 text-gray-500">
-                    {!! $subject->description !!}
                 </p> --}}
             </a>
         @endforeach
