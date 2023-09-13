@@ -13,6 +13,11 @@
             'icon' => 'fa fa-dashboard'
         ],
         [
+            'name' => 'Orders',
+            'route' => 'admin.subscriptions.orders',
+            'icon' => 'fa fa-dashboard'
+        ],
+        [
             'name' => 'Subjects',
             'icon' => 'fa fa-desktop',
             'sub'=> [

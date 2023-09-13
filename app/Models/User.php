@@ -10,7 +10,7 @@ class User extends Authenticatable
     use HasFactory;
 
     protected $fillable = [
-        'name','email','password'
+        'name','email','password','phone','videos'
     ];
 
     public function image()
@@ -23,4 +23,11 @@ class User extends Authenticatable
         if($value) $this->attributes['password'] = bcrypt($value);
     }
 
+    function orders(){
+        return $this->hasMany(Order::class);
+    }
+
+    function subscriptions(){
+        return $this->hasMany(Subscription::class);
+    }
 }

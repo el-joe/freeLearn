@@ -1,44 +1,46 @@
 @extends('web.layout.index')
 
 @section('content')
-    <div class="container px-4 lg:px-8 mx-auto h-full max-w-screen-xl text-gray-700">
-        @foreach ($lesson->questions as $key => $q)
-            <div class="flex flex-col mt-20 gap-10">
-                <div class="relative mt-20 sm:mt-0">
-                    <span class="tex-green-500 text-2xl font-medium">Question {{ $key + 1 }}</span>
-                    @if ($q->type == 'image')
-                        <img class="bg-white bg-opacity-80 rounded-lg" src="{{ $q->file?->file_path }}" width="200"
-                            height="50" />
-                    @else
-                        <span class="tex-green-500 text-2xl font-medium">{{ $q->source }}</span>
-                    @endif
-                </div>
+    <form action="{{route('submitExam',$subId)}}" method="POST">
+        @csrf
+        <div class="container px-4 lg:px-8 mx-auto h-full max-w-screen-xl text-gray-700">
+            @foreach ($lesson->questions as $key => $q)
+                <div class="flex flex-col mt-20 gap-10">
+                    <div class="relative mt-20 sm:mt-0">
+                        <span class="tex-green-500 text-2xl font-medium">Question {{ $key + 1 }}</span>
+                        @if ($q->type == 'image')
+                            <img class="bg-white bg-opacity-80 rounded-lg" src="{{ $q->file?->file_path }}" width="200"
+                                height="50" />
+                        @else
+                            <span class="tex-green-500 text-2xl font-medium">{{ $q->source }}</span>
+                        @endif
+                    </div>
 
-                <div class="flex flex-row gap-5">
-                    <!-- radion buttons  -->
-                    @foreach ($q->options as $key => $option)
-                        <label for="slider{{ $option->id }}">
-                            <input type="radio" name="question[{{ $q->id }}][answer]" value="{{ $option->id }}"
-                                id="slider{{ $option->id }}" />
-                            <br>
-                            @if ($option->type == 'image')
-                                <img class="bg-white bg-opacity-80 rounded-lg" src="{{ $option->file?->file_path }}"
-                                    width="200" height="50" />
-                            @else
-                                {{ $option->source }}
-                            @endif
-                        </label>
-                    @endforeach
+                    <div class="flex flex-row gap-5">
+                        <!-- radion buttons  -->
+                        @foreach ($q->options as $key => $option)
+                            <label for="slider{{ $option->id }}">
+                                <input type="radio" name="question[{{ $q->id }}]" value="{{ ++$key }}"
+                                    id="slider{{ $option->id }}" />
+                                <br>
+                                @if ($option->type == 'image')
+                                    <img class="bg-white bg-opacity-80 rounded-lg" src="{{ $option->file?->file_path }}"
+                                        width="200" height="50" />
+                                @else
+                                    {{ $option->source }}
+                                @endif
+                            </label>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-        @endforeach
-        <br>
-        <br>
-        <br>
-        <br>
-        <button class="text-gray-700 bg-cream rounded-full px-4 py-2 font-semibold text-sm">Submit Exam</button>
-    </div>
-
+            @endforeach
+            <br>
+            <br>
+            <br>
+            <br>
+            <button class="text-gray-700 bg-cream rounded-full px-4 py-2 font-semibold text-sm">Submit Exam</button>
+        </div>
+    </form>
     <div id="image-viewer">
         <span class="close">&times;</span>
         <img class="modal-content" id="full-image">

@@ -18,17 +18,17 @@
                     <h3 class="pt-4 text-2xl text-center">Welcome Back!</h3>
                     <form class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
                         <div class="mb-4">
-                            <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
-                                Email
+                            <label class="block mb-2 text-sm font-bold text-gray-700" for="phone">
+                                Phone
                             </label>
                             <input
-                                class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none @error('email') {{$errorClass}} @enderror"
-                                id="email"
+                                class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none @error('phone') {{$errorClass}} @enderror"
+                                id="phone"
                                 type="text"
-                                name="email"
-                                placeholder="example@example.com"
+                                name="phone"
+                                placeholder="010*********"
                             />
-                            @error('email')
+                            @error('phone')
                                 <p class="text-xs italic text-red-500">{{$message}}</p>
                             @enderror
                         </div>

@@ -131,7 +131,7 @@
     <!-- card -->
     <div class="grid md:grid-cols-3 gap-14 md:gap-5 mt-20">
         @foreach (['national','international','course'] as $subject)
-            <a href="{{route('years',$subject)}}" data-aos="fade-up"
+            <a href="{{$subject == 'course' ? route('courseSubjects') : route('years',$subject)}}" data-aos="fade-up"
                 class="bg-white shadow-xl p-6 text-center rounded-xl duration-300 hover:scale-105 cursor-pointer">
                 <div style="background: #5b72ee"
                     class="rounded-full w-16 h-16 flex items-center justify-center mx-auto shadow-lg transform -translate-y-12">

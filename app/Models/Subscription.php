@@ -10,7 +10,7 @@ class Subscription extends Model
     use HasFactory;
 
     protected $fillable = [
-        'ip','lesson_id','transaction_details','amount','status'
+        'ip','lesson_id','start_date','user_id'
     ];
 
     protected $casts = [

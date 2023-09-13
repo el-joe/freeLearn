@@ -9,6 +9,7 @@
         <thead>
           <tr>
             <th>#</th>
+            <th>Type</th>
             <th>Title</th>
             <th>Description</th>
             <th>Subject</th>
@@ -21,6 +22,7 @@
           @foreach ($lessons as $lesson)
             <tr>
                 <td>{{$lesson->id}}</td>
+                <td>{{$lesson->type}}</td>
                 <td>{{$lesson->name}}</td>
                 <td>{{$lesson->description}}</td>
                 <td>{{optional($lesson->subject)->name}}</td>

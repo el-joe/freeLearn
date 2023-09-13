@@ -45,6 +45,11 @@ class LessonController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->except('thumb','video','active');
+
+        if($request->type == 'course'){
+            $inputs['academic_year_id'] = $inputs['semester'] = 0;
+        }
+
         $inputs['active'] = $request->has("active") && $request->active == 'on' ? 1 : 0;
         $lesson = Lesson::create($inputs);
 
@@ -105,6 +110,11 @@ class LessonController extends Controller
         $lesson = Lesson::findOrFail($id);
 
         $inputs = $request->except('thumb','video','active');
+
+        if($request->type == 'course'){
+            $inputs['academic_year_id'] = $inputs['semester'] = 0;
+        }
+
         $inputs['active'] = $request->has("active") && $request->active == 'on' ? 1 : 0;
 
 

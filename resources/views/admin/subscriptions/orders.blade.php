@@ -9,20 +9,28 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>IP</th>
-            <th>Details</th>
+            <th>Video Count</th>
+            <th>Sub Total</th>
+            <th>VAT</th>
+            <th>Grand Total</th>
+            <th>User</th>
+            <th>Status</th>
+            <th>merchantRefNumber</th>
+            <th>referenceNumber</th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($subscriptions as $subscription)
+          @foreach ($orders as $order)
             <tr>
-                <td>{{$subscription->id}}</td>
-                <td>{{$subscription->ip}}</td>
-                <td>
-                    Subject : {{$subscription->lesson->subject->name}} <br>
-                    Year : {{$subscription->lesson->academicYear->name}} <br>
-                    Lesson : {{$subscription->lesson->name}}
-                </td>
+                <td>{{$order->id}}</td>
+                <td>{{$order->video_num}}</td>
+                <td>{{$order->subtotal}}</td>
+                <td>{{$order->vat}}</td>
+                <td>{{$order->total}}</td>
+                <td>{{$order->user?->name}}</td>
+                <td>{{$order->paid == 1 ? 'PAID' : 'NOT PAID'}}</td>
+                <td>{{$order->payment_data['merchantRefNumber'] ?? ''}}</td>
+                <td>{{$order->payment_data['referenceNumber'] ?? ''}}</td>
           @endforeach
         </tbody>
       </table>

@@ -33,6 +33,21 @@
                             @enderror
                         </div>
                         <div class="mb-4">
+                            <label class="block mb-2 text-sm font-bold text-gray-700" for="phone">
+                                Phone Number
+                            </label>
+                            <input
+                                class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none @error('phone') {{$errorClass}} @enderror"
+                                id="phone"
+                                type="text"
+                                name="phone"
+                                placeholder="010********"
+                            />
+                            @error('email')
+                                <p class="text-xs italic text-red-500">{{$message}}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-4">
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
                                 Email
                             </label>

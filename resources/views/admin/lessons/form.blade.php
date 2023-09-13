@@ -8,6 +8,14 @@
         @if($method == 'PUT')
             @method('PUT')
         @endif
+        <div class="form-group col-sm-12">
+            <label for="type">Type</label>
+            <select name="type" id="type" class="form-control">
+                <option value="national" {{isset($lesson) && $lesson->type == 'national' ? 'selected' : ''}}>National</option>
+                <option value="international" {{isset($lesson) && $lesson->type == 'international' ? 'selected' : ''}}>Inter National</option>
+                <option value="course" {{isset($lesson) && $lesson->type == 'course' ? 'selected' : ''}}>Course</option>
+            </select>
+        </div>
         <div class="form-group col-sm-4">
             <label for="subject_id">Subject</label>
             <select name="subject_id" id="subject_id" class="form-control">
@@ -75,5 +83,21 @@
 @endsection
 
 @push('scripts')
+    <script>
+        $('#type').on('change',function () {
+            changeType();
+        });
 
+        changeType();
+
+        function changeType() {
+            if($('#type').val() == 'course'){
+                $('#academic_year_id').attr('disabled', true);
+                $('#semester').attr('disabled', true);
+            }else{
+                $('#academic_year_id').attr('disabled', false);
+                $('#semester').attr('disabled', false);
+            }
+        }
+    </script>
 @endpush

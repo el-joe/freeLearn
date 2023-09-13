@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Web\WebController;
+use App\Models\Order;
 use App\Models\Subscription;
+use App\Traits\Fawry;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Response;
@@ -22,11 +24,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware(['auth:admin','role:admin'])->group(function () {
         Route::get('/', function () {
-            $totalYearRevenue = Subscription::whereYear('created_at',now()->year)->whereStatus('success')->get()
-                ->map(function ($subscription){
+            $totalYearRevenue = Order::whereYear('created_at',now()->year)->get()
+                ->map(function ($order){
                     return [
-                        'amount'=>$subscription->amount,
-                        'month'=>Carbon::parse($subscription->created_at)->format('m')
+                        'amount'=>$order->total,
+                        'month'=>Carbon::parse($order->created_at)->format('m')
                     ];
                 })->groupBy('month')->map(function ($subscriptions,$month){
                     return $subscriptions->sum('amount');
@@ -59,6 +61,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('lessons/{lesson}/exam',[LessonController::class,'examUpdate'])->name('lesson.examUpdate');
 
         Route::get('subscriptions',[SubscriptionController::class,'index'])->name('subscriptions.index');
+        Route::get('orders',[SubscriptionController::class,'orders'])->name('subscriptions.orders');
     });
 });
 
@@ -69,7 +72,8 @@ Route::get('{type}/year/{yearId}-s{semester}/subjects',[WebController::class,'su
 Route::get('course/subjects',[WebController::class,'courseSubjects'])->name('courseSubjects');
 Route::get('playlist/{data}',[WebController::class,'playlist'])->name('playlist');
 Route::get('video/{lessonId}',[WebController::class,'video'])->name('video');
-Route::get('exam/{lessonId}',[WebController::class,'exam'])->name('exam');
+Route::get('exam/{subId}',[WebController::class,'exam'])->name('exam');
+Route::post('submitExam/{subId}',[WebController::class,'submitExam'])->name('submitExam');
 Route::get('contact-us',[WebController::class,'contactUs'])->name('contactUs');
 Route::post('contact-us',[WebController::class,'contactUsPost'])->name('contactUsPost');
 Route::post('update-views',[WebController::class,'updateViews'])->name('updateViews');
@@ -77,8 +81,21 @@ Route::get('login',[WebController::class,'loginView'])->name('loginView');
 Route::post('loginPost',[WebController::class,'loginPost'])->name('loginPost');
 Route::get('register',[WebController::class,'registerView'])->name('registerView');
 Route::post('registerPost',[WebController::class,'registerPost'])->name('registerPost');
+Route::post('buy-now/{lessonId}',[WebController::class,'buyNow'])->name('buyNow');
+
+Route::get('checkout',[WebController::class,'checkout'])->name('checkout');
+
+Route::post('checkout',[WebController::class,'postCheckout']);
+
+Route::get('previous-carts',[WebController::class,'previousCarts']);
 
 Route::get('artisan/{command}',function($command){
     Artisan::call($command);
     dd('done');
 });
+
+// Route::get('test',function () {
+//     $fawry = new Fawry();
+
+//     dd($fawry->checkPayment());
+// });
