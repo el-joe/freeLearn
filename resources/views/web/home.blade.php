@@ -25,7 +25,7 @@
                 <img class="bg-white bg-opacity-80 rounded-lg h-12 sm:h-16" src="{{asset('website/img/calendar.svg')}}" />
             </div> --}}
             <!-- red -->
-            <div data-aos="fade-up" data-aos-delay="400" data-aos-once="true"
+            {{-- <div data-aos="fade-up" data-aos-delay="400" data-aos-once="true"
                 class="absolute top-20 right-10 sm:right-24 sm:top-28 md:top-36 md:right-32 lg:top-32 lg:right-16 floating">
                 <svg class="h-16 sm:h-24" viewBox="0 0 149 149" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_d)">
@@ -54,7 +54,7 @@
                         </filter>
                     </defs>
                 </svg>
-            </div>
+            </div> --}}
         </div>
     </div>
     <div class="text-white -mt-14 sm:-mt-24 lg:-mt-36 z-40 relative">
