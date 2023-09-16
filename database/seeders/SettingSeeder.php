@@ -20,31 +20,36 @@ class SettingSeeder extends Seeder
                 'title'=>'Lesson Video Price',
                 'column_name'=>'lesson_price',
                 'column_type'=>'float',
-                'value'=>10
+                'value'=>10,
+                'slug'=>'general'
             ],
             [
                 'title'=>'Home Page Video Views',
                 'column_name'=>'home_views',
                 'column_type'=>'number',
-                'value'=>0
+                'value'=>0,
+                'slug'=>'home'
             ],
             [
                 'title'=>'Home Page National Section',
                 'column_name'=>'home_nat_sec',
                 'column_type'=>'array',
-                'value'=> NULL
+                'value'=> NULL,
+                'slug'=>'home'
             ],
             [
                 'title'=>'Home Page International Section',
                 'column_name'=>'home_internat_sec',
                 'column_type'=>'array',
-                'value'=> NULL
+                'value'=> NULL,
+                'slug'=>'home'
             ],
             [
                 'title'=>'Home Page Course Section',
                 'column_name'=>'home_course_sec',
                 'column_type'=>'array',
-                'value'=> NULL
+                'value'=> NULL,
+                'slug'=>'home'
             ]
         ];
         foreach ($data as $value) {
