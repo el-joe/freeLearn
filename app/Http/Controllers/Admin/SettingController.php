@@ -62,6 +62,9 @@ class SettingController extends Controller
         $inputs = $request->except('_token','_method');
 
         foreach ($inputs as $key => $value) {
+            if(is_array($value)){
+                $value = json_encode($value);
+            }
             if($request->hasFile($key)){
                 $value = Storage::disk(env('FILESYSTEM_DISK','public'))->put('settings', $value);
             }

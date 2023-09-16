@@ -48,6 +48,21 @@
                 @case('float')
                     <input type="number" name="{{$setting->column_name}}" id="{{$setting->column_name}}" value="{{$setting->value}}" class="form-control" required>
                 @break
+                @case('array')
+                    <div class="array-inputs" column_name="{{$setting->column_name}}"></div>
+                        @foreach ((json_decode($setting->value) ?? []) as $key=>$item)
+                            <div class="array-input">
+                                <li>
+                                    <input type="text" name="{{$setting->column_name}}[]" id="{{$setting->column_name}}" value="{{$item}}" class="form-control col-sm-9" required>
+                                    <a href="javascript:" onclick="removeThis(event)">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </li>
+                            </div>
+                        @endforeach
+                    <br>
+                    <a href="javascript:" class="btn btn-success" onclick="moreInputs(event,'{{$setting->column_name}}')">More</a>
+                @break
                 @endswitch
             </div>
         @endforeach
@@ -56,5 +71,27 @@
 @endsection
 
 @push('scripts')
+    <script>
+        function moreInputs(event,columnName){
+            event.preventDefault();
 
+            let input = `
+                <div class="array-input">
+                    <li>
+                        <input type="text" name="${columnName}[]" id="${columnName}" value="" class="form-control col-sm-6" required>
+                        <a href="javascript:" onclick="removeThis(event)">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </li>
+                </div>
+            `;
+
+            $(event.currentTarget).before(input);
+        }
+
+        function removeThis(event){
+            var parentElem = $(event.target).closest('.array-input');
+            parentElem.remove();
+        }
+    </script>
 @endpush

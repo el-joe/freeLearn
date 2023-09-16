@@ -56,15 +56,12 @@ class WebController extends Controller
 
     function registerPost(Request $request) {
         $request->validate([
-            'email'=>[
-                'required','email',
-                Rule::unique('users','email')
-            ],
             'password'=>'required',
-            'name'=>'required'
+            'name'=>'required',
+            'phone'=>'required|unique:users,phone',
         ]);
 
-        $user = User::create($request->only('name','email','password'));
+        $user = User::create($request->only('name','phone','password'));
 
         auth()->guard('user')->login($user);
 

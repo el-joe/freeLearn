@@ -9,8 +9,7 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Email</th>
+            <th>Type</th>
             <th>Message</th>
           </tr>
         </thead>
@@ -18,8 +17,7 @@
           @foreach ($contacts as $contact)
             <tr>
                 <td>{{$contact->id}}</td>
-                <td>{{$contact->name}}</td>
-                <td>{{$contact->email}}</td>
+                <td>{{$contact->type}}</td>
                 <td>{{$contact->message}}</td>
           @endforeach
         </tbody>

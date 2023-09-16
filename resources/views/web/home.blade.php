@@ -113,7 +113,7 @@
                     </path>
                 </svg>
             </div>
-            <div class="bg-green-500 w-40 h-40 floating absolute rounded-lg z-10 -bottom-3 -right-3"></div>
+            {{-- <div class="bg-green-500 w-40 h-40 floating absolute rounded-lg z-10 -bottom-3 -right-3"></div> --}}
         </div>
     </div>
 
@@ -130,7 +130,7 @@
     </div>
     <!-- card -->
     <div class="grid md:grid-cols-3 gap-14 md:gap-5 mt-20">
-        @foreach (['national','international','course'] as $subject)
+        @foreach (['home_nat_sec'=>'national','home_internat_sec'=>'international','home_course_sec'=>'course'] as $key=>$subject)
             <a href="{{$subject == 'course' ? route('courseSubjects') : route('years',$subject)}}" data-aos="fade-up"
                 class="bg-white shadow-xl p-6 text-center rounded-xl duration-300 hover:scale-105 cursor-pointer">
                 <div style="background: #5b72ee"
@@ -146,7 +146,16 @@
                     {{strtoupper($subject)}}
                 </h1>
                 <p>
-                    {!! $subject !!}
+                    <?php $settingName = App\Models\Setting::whereColumnName($key)->first()  ?>
+                    @if($settingName->value != NULL)
+                        <ul>
+                            @foreach (json_decode($settingName->value) as $item)
+                                <li>
+                                    {!! $item !!}
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </p>
                 {{-- <p class="px-4 text-gray-500">
                 </p> --}}

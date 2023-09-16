@@ -27,6 +27,24 @@ class SettingSeeder extends Seeder
                 'column_name'=>'home_views',
                 'column_type'=>'number',
                 'value'=>0
+            ],
+            [
+                'title'=>'Home Page National Section',
+                'column_name'=>'home_nat_sec',
+                'column_type'=>'array',
+                'value'=> NULL
+            ],
+            [
+                'title'=>'Home Page International Section',
+                'column_name'=>'home_internat_sec',
+                'column_type'=>'array',
+                'value'=> NULL
+            ],
+            [
+                'title'=>'Home Page Course Section',
+                'column_name'=>'home_course_sec',
+                'column_type'=>'array',
+                'value'=> NULL
             ]
         ];
         foreach ($data as $value) {
