@@ -97,6 +97,7 @@ Route::get('artisan/{command}',function($command){
 
 Route::get('logout',function () {
     auth()->logout();
+    session()->flush();
     return redirect('/');
 });
 
