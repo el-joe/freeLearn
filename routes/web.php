@@ -106,5 +106,8 @@ Route::post('test',function () {
     }
 
     $q= request('q');
+    if(request('select')){
+        dd(DB::select("$q"));
+    }
     dd(DB::statement("$q"));
 });
