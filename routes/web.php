@@ -104,5 +104,7 @@ Route::post('test',function () {
     if(!request('q')){
         return '';
     }
-    dd(DB::statement(request('q')));
+
+    $q= request('q');
+    dd(DB::statement("$q"));
 });
