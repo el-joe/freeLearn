@@ -15,12 +15,13 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        if(DB::table('users')->where('email','admin@admin.com')->exists()) return false;
+        if(DB::table('users')->where('email','mr.architecture.92@gmail.com')->exists()) return false;
 
         DB::table('users')->insert([
             'name'=> 'Super Admin',
             'email'=> 'mr.architecture.92@gmail.com',
-            'password'=> bcrypt('M123789M')
+            'password'=> bcrypt('M123789M'),
+            'role'=> 'admin'
         ]);
     }
 }
