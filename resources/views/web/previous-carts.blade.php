@@ -25,7 +25,7 @@
                                 <h2 class="text-lg flex-1 font-bold text-gray-900">#{{ $order->id }}</h2>
                                 <p class="mt-1 ml-2 flex-1/2 text-xs text-gray-700">
                                     Fawry Code : <span
-                                        class="text-sm font-bold">{{ $order->payment_data['referenceNumber'] }}</span>
+                                        class="text-sm font-bold">{{ $order->payment_data['referenceNumber'] ?? 'ERROR' }}</span>
                                 </p>
                                 <p class="mt-1 ml-2 flex-1/2 text-xs text-{{ $order->paid == 1 ? 'green' : 'red' }}-700">
                                     {{ $order->paid == 1 ? 'Paid' : 'Not Paid' }}

