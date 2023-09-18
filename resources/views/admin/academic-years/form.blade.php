@@ -10,7 +10,7 @@
         @endif
         <div class="form-group">
             <label for="name">Name *</label>
-            <input type="text" name="name" id="name" value="{{isset($academicYear->name) ? $academicYear->name : ''}}" class="form-control" placeholder="Enter subject name">
+            <input type="text" name="name" id="name" value="{{isset($academicYear->name) ? $academicYear->name : ''}}" class="form-control" placeholder="Enter name">
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
 @endsection
