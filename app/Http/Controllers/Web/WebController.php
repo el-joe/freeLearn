@@ -220,7 +220,7 @@ class WebController extends Controller
 
         $vat = 2 + ($subtotal * .025);
 
-        $total = $subtotal + $vat;
+        $total = number_format($subtotal + $vat,2,'.','');
 
         $fawry = new Fawry();
 

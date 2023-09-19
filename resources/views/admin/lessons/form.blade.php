@@ -53,7 +53,7 @@
         </div> --}}
         <div class="form-group col-sm-9">
             <label for="expire_hours">Expire Hours *</label>
-            <input type="number" name="expire_hours" id="expire_hours" value="{{isset($lesson->expire_hours) ? $lesson->expire_hours : ''}}" class="form-control" placeholder="4">
+            <input type="number" name="expire_hours" id="expire_hours" value="{{isset($lesson->expire_hours) ? $lesson->expire_hours : '4'}}" class="form-control" placeholder="4">
         </div>
         <div class="form-group col-sm-3">
             <label for="active">Active</label>
