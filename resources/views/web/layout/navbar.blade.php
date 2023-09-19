@@ -36,6 +36,11 @@
             <a class="px-4 py-2 mt-2 text-lg font-medium mr-auto bg-transparent rounded-lg sm:mt-8 sm:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
                 href="/contact-us">Contact Us</a>
 
+            <a class="px-4 py-2 mt-2 text-lg font-medium mr-auto bg-transparent rounded-lg sm:mt-8 sm:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
+                href="/terms">Terms</a>
+
+            <a class="px-4 py-2 mt-2 text-lg font-medium mr-auto bg-transparent rounded-lg sm:mt-8 sm:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"
+                href="/policy">Policy</a>
 
             @auth('user')
             <a class="px-4 py-2 mt-2 text-lg font-medium mr-auto bg-transparent rounded-lg sm:mt-8 sm:ml-4 hover:text-gray-900 focus:outline-none focus:shadow-outline"

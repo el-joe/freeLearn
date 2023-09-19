@@ -57,6 +57,13 @@ class SettingSeeder extends Seeder
                 'column_type'=>'textarea',
                 'value'=> NULL,
                 'slug'=>'terms'
+            ],
+            [
+                'title'=>'Policy',
+                'column_name'=>'policy',
+                'column_type'=>'textarea',
+                'value'=> NULL,
+                'slug'=>'policy'
             ]
         ];
         foreach ($data as $value) {

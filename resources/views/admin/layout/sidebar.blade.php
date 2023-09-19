@@ -70,6 +70,11 @@
             'route' => 'admin.contacts.index',
             'icon' => 'fa fa-dashboard'
         ],
+        [
+            'name' => 'Settings',
+            'route' => 'admin.settings.index',
+            'icon' => 'fa fa-dashboard'
+        ],
 
     ]));
     @endphp

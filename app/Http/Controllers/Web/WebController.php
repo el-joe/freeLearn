@@ -284,4 +284,9 @@ class WebController extends Controller
         $setting = Setting::where('column_name','terms_content')->first()->value;
         return view('web.terms',get_defined_vars());
     }
+
+    function policy() {
+        $setting = Setting::where('column_name','policy')->first()->value;
+        return view('web.policy',get_defined_vars());
+    }
 }
