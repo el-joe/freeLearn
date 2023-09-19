@@ -279,4 +279,9 @@ class WebController extends Controller
             'url'=> route('checkout')
         ]);
     }
+
+    function terms() {
+        $setting = Setting::where('column_name','terms_content')->first()->value;
+        return view('web.terms',get_defined_vars());
+    }
 }

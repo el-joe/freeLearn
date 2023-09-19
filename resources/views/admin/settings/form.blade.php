@@ -16,7 +16,7 @@
                     <input type="text" class="form-control" name="{{$setting->column_name}}" id="{{$setting->column_name}}" value="{{$setting->value}}" required>
                 @break
                 @case('textarea')
-                    <textarea name="{{$setting->column_name}}" id="{{$setting->column_name}}" class="form-control" required>{!! $setting->value !!}</textarea>
+                    <textarea name="{{$setting->column_name}}" id="{{$setting->column_name}}" class="form-control editor" >{!! $setting->value !!}</textarea>
                 @break
                 @case('url')
                     <input type="url" name="{{$setting->column_name}}" id="{{$setting->column_name}}" value="{{$setting->value}}" class="form-control" required>
@@ -71,6 +71,18 @@
 @endsection
 
 @push('scripts')
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
+<script>
+            ClassicEditor
+                    .create( document.querySelector( '.editor' ) )
+                    .then( editor => {
+                            console.log( editor );
+                    } )
+                    .catch( error => {
+                            console.error( error );
+                    } );
+
+    </script>
     <script>
         function moreInputs(event,columnName){
             event.preventDefault();

@@ -77,6 +77,7 @@ Route::get('exam/{subId}',[WebController::class,'exam'])->name('exam');
 Route::post('submitExam/{subId}',[WebController::class,'submitExam'])->name('submitExam');
 Route::get('contact-us',[WebController::class,'contactUs'])->name('contactUs');
 Route::post('contact-us',[WebController::class,'contactUsPost'])->name('contactUsPost');
+Route::get('terms',[WebController::class,'terms'])->name('terms');
 Route::post('update-views',[WebController::class,'updateViews'])->name('updateViews');
 Route::get('login',[WebController::class,'loginView'])->name('loginView');
 Route::post('loginPost',[WebController::class,'loginPost'])->name('loginPost');

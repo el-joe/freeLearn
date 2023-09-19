@@ -50,6 +50,13 @@ class SettingSeeder extends Seeder
                 'column_type'=>'array',
                 'value'=> NULL,
                 'slug'=>'home'
+            ],
+            [
+                'title'=>'Terms & Conditions',
+                'column_name'=>'terms_content',
+                'column_type'=>'textarea',
+                'value'=> NULL,
+                'slug'=>'terms'
             ]
         ];
         foreach ($data as $value) {
