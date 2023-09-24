@@ -47,21 +47,27 @@ class LessonController extends Controller
         $reqData = [
             'type'=>'required|in:course,international,national',
             'subject_id'=>'required|exists:subjects,id',
-            'name'=>'required',
-            'description'=>'required',
+            'name'=>'required|string',
+            'description'=>'required|string',
             'thumb'=>'required|mimes:jpg,jpeg,png',
             'video'=>'required|mimes:mp4,ogx,oga,ogv,ogg,webm',
             'expire_hours'=>'required|numeric',
         ];
 
-        if($request->type != 'course'){
+        if($request->type == 'course'){
             $reqData = array_merge([
-                'acadimec_year_id'=>'required_unless:type,course',
-                'semester'=>'required_unless:type,course',
-            ]);
+                'academic_year_id'=>'nullable',
+                'semester'=>'nullable',
+            ],$reqData);
+        }else{
+            $reqData = array_merge([
+                'academic_year_id'=>'required|exists:academic_years,id',
+                'semester'=>'required|in:1,2',
+            ],$reqData);
         }
 
         $request->validate($reqData);
+
         $inputs = $request->except('thumb','video','active');
 
         if($request->type == 'course'){

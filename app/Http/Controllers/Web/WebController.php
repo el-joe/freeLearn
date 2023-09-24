@@ -114,7 +114,7 @@ class WebController extends Controller
 
         $now = now()->format('Y-m-d H:i');
 
-        $subscription = auth('user')->user()->subscriptions()
+        $subscription = auth('user')->user()?->subscriptions()
             ->whereLessonId($_lessonId)
             ->whereRaw('((DATE(start_date) <= "'. $now .'" AND DATE_ADD(start_date, INTERVAL '. $lesson->expire_hours .' HOUR) >= "'. $now.'") OR start_date is null)')
             ->first();
