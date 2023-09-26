@@ -45,7 +45,7 @@ class Fawry {
                 'customerEmail' => $customerData['email'],
                 'customerProfileId'=> $customerData['id'],
                 'amount' => $amount,
-                // 'paymentExpiry' => now()->toDate,
+                'paymentExpiry' => now()->getTimestampMs(),
                 'currencyCode' => 'EGP',
                 'language' => 'ar-eg',
                 'chargeItems' => [
