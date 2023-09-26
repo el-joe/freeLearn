@@ -49,12 +49,12 @@ class Fawry {
                 'currencyCode' => 'EGP',
                 'language' => 'ar-eg',
                 'chargeItems' => [
-                                    [
-                                      'itemId' => '1',
-                                      'description' => 'Video Purchase',
-                                      'price' => $amount,
-                                      'quantity' => '1'
-                                    ]
+                    [
+                        'itemId' => '1',
+                        'description' => 'Video Purchase',
+                        'price' => $amount,
+                        'quantity' => '1'
+                    ]
                                   ],
                 'signature' => $signature,
                 'paymentMethod' => $payment_method,
