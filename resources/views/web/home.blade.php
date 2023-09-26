@@ -192,7 +192,7 @@
     <script>
         function playVideo(e){
             $(e.currentTarget).parents('.main-video-component').empty()
-            .append('<video class="rounded-lg shadow-lg w-full" src="{{asset("website/video/home-video.webm")}}" autoplay="1" controls></video>');
+            .append('<video class="rounded-lg shadow-lg w-full" src="{{asset("website/video/home-video.mp4")}}" autoplay="1" controls></video>');
 
             $.ajax({
                 url : "/update-views",
