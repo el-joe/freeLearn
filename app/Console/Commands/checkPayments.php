@@ -29,7 +29,8 @@ class checkPayments extends Command
      */
     public function handle()
     {
-        $payments = Order::wherePaid(0)->whereNotNull('payment_data')->get();
+        $payments = Order::wherePaid(0)->whereRaw('DATE(created_at) = DATE(now())')
+            ->whereNotNull('payment_data')->get();
 
         $fawry = new Fawry();
 
