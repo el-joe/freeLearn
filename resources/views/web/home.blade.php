@@ -84,7 +84,7 @@
                 schools manage scheduling, attendance, payments and virtual
                 classrooms all in one secure cloud-based system.
             </p>
-            <a href="" class="underline">Learn More</a>
+            {{-- <a href="" class="underline">Learn More</a> --}}
         </div>
         <div data-aos="fade-left" class="sm:w-1/2 relative mt-10 sm:mt-0">
             <div class="main-video-component">
@@ -192,7 +192,7 @@
     <script>
         function playVideo(e){
             $(e.currentTarget).parents('.main-video-component').empty()
-            .append('<video class="rounded-lg shadow-lg w-full" src="{{asset("website/video/home-video.mp4")}}" autoplay="1" controls></video>');
+            .append('<video class="rounded-lg shadow-lg w-full" controlsList="nodownload" src="{{asset("website/video/home-video.mp4")}}" autoplay="1" controls></video>');
 
             $.ajax({
                 url : "/update-views",

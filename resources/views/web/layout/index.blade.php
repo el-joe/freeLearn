@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="{{asset('logo.png')}}">
-    <title>Free Learn</title>
+    <title>Free Learn EG</title>
 
     @include('web.layout.styles')
     @stack('styles')
