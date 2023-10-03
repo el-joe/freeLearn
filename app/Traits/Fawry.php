@@ -8,10 +8,10 @@ class Fawry {
 
     function __construct()
     {
-        $this->liveMode = $liveMode = false;
+        $this->liveMode = $liveMode = true;
         if($liveMode){
-            $this->merchantCode = '770000015904';
-            $this->hashKey = '95aa9b63-185d-406b-a16e-3d2ebeb585da';
+            $this->merchantCode = '400000014835';
+            $this->hashKey = '2dc37900-b939-4ef3-a472-e2c5210db2d7';
         }else{
             $this->merchantCode = '770000015904';
             $this->hashKey = '95aa9b63-185d-406b-a16e-3d2ebeb585da';
