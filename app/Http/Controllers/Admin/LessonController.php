@@ -178,7 +178,7 @@ class LessonController extends Controller
                 return [
                     'type'=>$question->type,
                     'answer'=>$question->answer,
-                    'source'=>$question->type == 'image' ? $question->file->file_path :$question->source,
+                    'source'=>$question->type == 'image' ? $question->file?->file_path :$question->source,
                     'options'=>$question->options->map(function ($option){
                         return [
                             'type'=>$option->type,
