@@ -77,7 +77,7 @@ class Fawry {
         $merchant_sec_key =  $this->hashKey; // For the sake of demonstration
         $signature = hash('sha256' , $merchantCode . $merchantRefNumber . $merchant_sec_key);
         $httpClient = new \GuzzleHttp\Client(); // guzzle 6.3
-        $response = $httpClient->request('GET', 'https://atfawry.fawrystaging.com/ECommerceWeb/Fawry/payments/status/v2', [
+        $response = $httpClient->request('GET', $this->domain.'/ECommerceWeb/Fawry/payments/status/v2', [
             'query' => [
                 'merchantCode' => $merchantCode,
                 'merchantRefNumber' => $merchantRefNumber,
