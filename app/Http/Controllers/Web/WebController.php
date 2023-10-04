@@ -121,7 +121,10 @@ class WebController extends Controller
 
         if($subscription){
             $expireDate = Carbon::parse($subscription->start_date)->addHours($lesson->expire_hours);
-            if($subscription->start_date == null){
+
+            $countLessonQuestions = $lesson->questions->count();
+
+            if($subscription->start_date == null && $countLessonQuestions > 0){
                 $subscriptionId = base64_encode($subscription->id);
                 return redirect()->route('exam',$subscriptionId);
             }else{
