@@ -120,11 +120,10 @@ class WebController extends Controller
             ->first();
 
         if($subscription){
-            $expireDate = Carbon::parse($subscription->start_date)->addHours($lesson->expire_hours);
+            $expireDate = Carbon::parse($subscription->start_date)
+                ->addHours($lesson->expire_hours);
 
-            $countLessonQuestions = $lesson->questions->count();
-
-            if($subscription->start_date == null && $countLessonQuestions > 0){
+            if($subscription->start_date == null){
                 $subscriptionId = base64_encode($subscription->id);
                 return redirect()->route('exam',$subscriptionId);
             }else{
@@ -171,16 +170,18 @@ class WebController extends Controller
 
         $lesson = Lesson::find($subscription->lesson_id);
 
-        foreach ($request->question as $questionId => $answerNum) {
-            $question = $lesson->questions()->find($questionId);
+        if(isset($request->question)){
+            foreach ($request->question as $questionId => $answerNum) {
+                $question = $lesson->questions()->find($questionId);
 
-            $score = $question->answer == $answerNum ? 1 : 0;
+                $score = $question->answer == $answerNum ? 1 : 0;
 
-            $subscription->subscriptionExam()->create([
-                'lesson_exam_id'=>$questionId,
-                'answer'=>$answerNum,
-                'score'=>$score
-            ]);
+                $subscription->subscriptionExam()->create([
+                    'lesson_exam_id'=>$questionId,
+                    'answer'=>$answerNum,
+                    'score'=>$score
+                ]);
+            }
         }
 
         $subscription->update([
