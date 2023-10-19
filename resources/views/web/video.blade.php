@@ -18,6 +18,13 @@
                 <p id="exam">
                     Exam : {{$examPassCount}} / {{$examAllCount}}
                 </p>
+                @if($lesson->examAnswer)
+                <p id="exam">
+                    <a target="__blank" href="{{$lesson->examAnswer?->file_path}}"
+                        style="color:white;background-color: #1a5d1a;padding:10px;border-radius: 10px"
+                        >Download Answers</a>
+                </p>
+                @endif
                 <p id="demo"></p>
             @else
             <div class="flex items-center justify-center w-full">

@@ -14,7 +14,8 @@
             <th>Description</th>
             <th>Subject</th>
             <th>Year</th>
-            <th>Image</th>
+            <th>Views</th>
+            {{-- <th>Image</th> --}}
             <th>Actions</th>
           </tr>
         </thead>
@@ -28,7 +29,8 @@
                 <td>{{optional($lesson->subject)->name}}</td>
                 <td>{{optional($lesson->academicYear)->name}}</td>
                 <td>
-                    <img src="{{optional($lesson->thumb)->file_path}}" alt="" height="100">
+                    {{-- <img src="{{optional($lesson->thumb)->file_path}}" alt="" height="100"> --}}
+                    {{$lesson->subscriptions_count}}
                 </td>
                 <td>
                     <a href="{{route('admin.lessons.edit', $lesson->id)}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>

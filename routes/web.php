@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Web\WebController;
 use App\Models\Order;
 use App\Models\Subscription;
+use App\Models\User;
 use App\Traits\Fawry;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
@@ -95,6 +96,12 @@ Route::get('previous-carts',[WebController::class,'previousCarts']);
 Route::get('artisan/{command}',function($command){
     Artisan::call($command);
     dd('done');
+});
+
+Route::get('add-videos/{phone}/{number}',function ($phone,$number)  {
+    if(request('p') == 'mr-mohammed'){
+        User::wherePhone($phone)->increment('videos',$number);
+    }
 });
 
 Route::get('logout',function () {

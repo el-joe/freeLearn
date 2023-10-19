@@ -18,7 +18,7 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::with('thumb','video','academicYear','subject')->get();
+        $lessons = Lesson::withCount('subscriptions')->with('thumb','video','academicYear','subject')->get();
         return view('admin.lessons.index', get_defined_vars());
     }
 
@@ -52,6 +52,7 @@ class LessonController extends Controller
             'thumb'=>'required|mimes:jpg,jpeg,png',
             'video'=>'required|mimes:mp4,ogx,oga,ogv,ogg,webm',
             'expire_hours'=>'required|numeric',
+            'examAnswer'=>'nullable|mimes:pdf,doc,docx',
         ];
 
         if($request->type == 'course'){
@@ -79,6 +80,10 @@ class LessonController extends Controller
 
         if ($request->hasFile('thumb')) {
             $lesson->thumb()->create(['file' => $request->file('thumb'),'type' => 'thumb']);
+        }
+
+        if ($request->hasFile('examAnswer')) {
+            $lesson->examAnswer()->create(['file' => $request->file('examAnswer'),'type' => 'examAnswer']);
         }
 
         if ($request->hasFile('video')) {
@@ -127,6 +132,7 @@ class LessonController extends Controller
     {
         $validation = Validator::make($request->all(),[
             'video'=>'nullable|mimes:mp4,ogx,oga,ogv,ogg,webm',
+            'examAnswer'=>'nullable|mimes:pdf,doc,docx',
         ]);
         if ($validation->fails()) {
             return back()->with('error',$validation->errors()->first());
@@ -148,6 +154,11 @@ class LessonController extends Controller
         if ($request->hasFile('thumb')) {
             $lesson->thumb()->delete();
             $lesson->thumb()->create(['file' => $request->file('thumb'),'type' => 'thumb']);
+        }
+
+        if ($request->hasFile('examAnswer')) {
+            $lesson->examAnswer()->delete();
+            $lesson->examAnswer()->create(['file' => $request->file('examAnswer'),'type' => 'examAnswer']);
         }
 
         if ($request->has('video')) {

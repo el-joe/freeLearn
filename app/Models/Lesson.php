@@ -33,8 +33,17 @@ class Lesson extends Model
         return $this->morphOne(File::class, 'model')->where('type', 'thumb');
     }
 
+    public function examAnswer()
+    {
+        return $this->morphOne(File::class, 'model')->where('type', 'examAnswer');
+    }
+
     public function video()
     {
         return $this->morphOne(File::class, 'model')->where('type', 'video');
+    }
+
+    function subscriptions() {
+        return $this->hasMany(Subscription::class,'lesson_id');
     }
 }

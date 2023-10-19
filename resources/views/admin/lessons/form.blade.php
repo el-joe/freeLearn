@@ -67,6 +67,15 @@
             @endisset
         </div>
 
+        <div class="form-group col-sm-12 imageInputWithPreviosImage">
+            <label for="examAnswer">Exam Answers</label>
+            <input type="file" name="examAnswer" id="examAnswer" class="form-control">
+            @isset($lesson)
+                <a target="__blank" href="{{$lesson->examAnswer?->file_path}}">{{$lesson->examAnswer?->file_path}}</a>
+            @endisset
+        </div>
+
+
         <div class="form-group col-sm-12">
             <label for="video">Video</label>
             <input type="file" name="video" id="video" class="form-control">
