@@ -19,9 +19,9 @@
                 <td>{{$subscription->id}}</td>
                 <td>{{$subscription->ip}}</td>
                 <td>
-                    Subject : {{$subscription->lesson->subject->name}} <br>
-                    Year : {{$subscription->lesson->academicYear->name}} <br>
-                    Lesson : {{$subscription->lesson->name}}
+                    Subject : {{$subscription->lesson?->subject?->name}} <br>
+                    Year : {{$subscription->lesson?->academicYear?->name}} <br>
+                    Lesson : {{$subscription->lesson?->name}}
                 </td>
           @endforeach
         </tbody>
