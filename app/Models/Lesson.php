@@ -10,7 +10,7 @@ class Lesson extends Model
     use HasFactory;
 
     protected $fillable = [
-        'subject_id','academic_year_id','name','description','price','semester','expire_hours','active'
+        'subject_id','academic_year_id','name','description','price','semester','expire_hours','active','instructor_id'
     ];
 
     public function subject()
@@ -45,5 +45,9 @@ class Lesson extends Model
 
     function subscriptions() {
         return $this->hasMany(Subscription::class,'lesson_id');
+    }
+
+    function instructor() {
+        return $this->belongsTo(Instructor::class);
     }
 }

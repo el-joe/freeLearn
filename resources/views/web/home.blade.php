@@ -70,7 +70,7 @@
 <!-- container -->
 <div class="container px-4 lg:px-8 mx-auto max-w-screen-xl text-gray-700 overflow-x-hidden">
     <h1 class="text-darken text-center text-2xl font-semibold">
-        Latest News and Resources
+        How to use our website
     </h1>
     <div class="sm:flex items-center sm:space-x-8 mt-20">
         <div data-aos="fade-right" class="sm:w-1/2 relative">
@@ -192,7 +192,7 @@
     <script>
         function playVideo(e){
             $(e.currentTarget).parents('.main-video-component').empty()
-            .append('<video class="rounded-lg shadow-lg w-full" controlsList="nodownload" src="{{asset("website/video/home-video.mp4")}}" autoplay="1" controls></video>');
+            .append('<video class="rounded-lg shadow-lg w-full" controlsList="nodownload" src="{{\App\Models\Setting::whereColumnName("home_video")->first()->file_path ?? ''}}" autoplay="1" controls></video>');
 
             $.ajax({
                 url : "/update-views",

@@ -33,6 +33,7 @@ class File extends Model
     public function getFilePathAttribute()
     {
         $filename = $this->attributes['file'];
+
         if(Storage::disk(env('FILESYSTEM_DISK','public'))->exists($filename)){
             return Storage::disk(env('FILESYSTEM_DISK','public'))->url($filename);
         }

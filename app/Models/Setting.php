@@ -19,7 +19,7 @@ class Setting extends Model
     ];
 
     function getFilePathAttribute() {
-        if(Storage::exists($this->value)) {
+        if(Storage::exists($this->value??'')) {
             return Storage::url($this->value);
         }
         return "";

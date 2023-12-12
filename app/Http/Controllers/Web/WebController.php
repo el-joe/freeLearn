@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\ContactMail;
 use App\Models\AcademicYear;
 use App\Models\Contact;
+use App\Models\Instructor;
 use App\Models\Lesson;
 use App\Models\Setting;
 use App\Models\Subject;
@@ -87,10 +88,10 @@ class WebController extends Controller
         return view('web.years',get_defined_vars());
     }
 
-    public function playlist($data)
+    public function playlist(Request $request,$_data)
     {
         try{
-            $data = base64_decode($data);
+            $data = base64_decode($_data);
             $data = json_decode($data);
         }catch(Exception $e){
             return redirect('/')->with('error','something went wronge!');
@@ -102,9 +103,18 @@ class WebController extends Controller
 
         // dd($data);
 
-        $lessons = Lesson::whereActiveAndSubjectIdAndSemesterAndTypeAndAcademicYearId(1,$data->subjectId,$data->semester,$data->type,$data->yearId)->get();
+        if($request->has('instructor_id')){
+            $lessons = Lesson::whereActiveAndSubjectIdAndSemesterAndTypeAndAcademicYearIdAndInstructorId(1,$data->subjectId,$data->semester,$data->type,$data->yearId,$request->instructor_id)->get();
+            return view('web.playlist',get_defined_vars());
+        }else{
+            $instructors = Instructor::with('image')->whereHas('lessons',function ($q)use($data) {
+                $q->whereActiveAndSubjectIdAndSemesterAndTypeAndAcademicYearId(1,$data->subjectId,$data->semester,$data->type,$data->yearId);
+            })->get();
 
-        return view('web.playlist',get_defined_vars());
+            return view('web.instructors',get_defined_vars());
+        }
+
+
     }
 
     public function video($lessonId)

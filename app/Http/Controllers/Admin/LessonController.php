@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AcademicYear;
+use App\Models\Instructor;
 use App\Models\Lesson;
 use App\Models\Subject;
 use Illuminate\Http\Request;
@@ -33,6 +34,7 @@ class LessonController extends Controller
         $method = 'POST';
         $subjects = Subject::select('name','id')->get();
         $academicYears = AcademicYear::select('name','id')->get();
+        $instructors = Instructor::all();
         return view('admin.lessons.form', get_defined_vars());
     }
 
@@ -118,6 +120,7 @@ class LessonController extends Controller
         $lesson = Lesson::findOrFail($id);
         $subjects = Subject::select('name','id')->get();
         $academicYears = AcademicYear::select('name','id')->get();
+        $instructors = Instructor::all();
         return view('admin.lessons.form', get_defined_vars());
     }
 

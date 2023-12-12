@@ -64,6 +64,13 @@ class SettingSeeder extends Seeder
                 'column_type'=>'textarea',
                 'value'=> NULL,
                 'slug'=>'policy'
+            ],
+            [
+                'title'=>'Home Page Video',
+                'column_name'=>'home_video',
+                'column_type'=>'file',
+                'value'=> NULL,
+                'slug'=>'home'
             ]
         ];
         foreach ($data as $value) {

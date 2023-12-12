@@ -33,13 +33,22 @@
             </select>
         </div>
         <div class="form-group col-sm-4">
+            <label for="instructor_id">Instructor</label>
+            <select name="instructor_id" id="instructor_id" class="form-control">
+                @foreach ($instructors as $instructor)
+                    <option value="{{$instructor->id}}" {{isset($lesson) && $instructor->id == $lesson->instructor_id ? 'selected' : ''}}>{{$instructor->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group col-sm-4">
             <label for="semester">Semester</label>
             <select name="semester" id="semester" class="form-control">
                 <option value="1">1</option>
                 <option value="2">2</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group col-sm-8">
             <label for="name">Name *</label>
             <input type="text" name="name" id="name" value="{{isset($lesson->name) ? $lesson->name : ''}}" class="form-control" placeholder="Enter Lesson name">
         </div>

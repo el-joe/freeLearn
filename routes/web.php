@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Admin\AcademicYearController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\InstructorController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\SubscriptionController;
 use App\Http\Controllers\Web\WebController;
+use App\Models\Instructor;
 use App\Models\Order;
 use App\Models\Subscription;
 use App\Models\User;
@@ -54,6 +56,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             return view('admin.dashboard',get_defined_vars());
         })->name('dashboard');
 
+        Route::resource('instructors',InstructorController::class);
         Route::resource('subjects',SubjectController::class);
         Route::resource('settings', SettingController::class);
         Route::get('contacts',[SubjectController::class,'contacts'])->name('contacts.index');
@@ -71,8 +74,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::get('/',[WebController::class,'home'])->name('home');
 Route::get('{type}/years',[WebController::class,'years'])->name('years');
 Route::get('{type}/year/{yearId}-s{semester}/subjects',[WebController::class,'subjects'])->name('subjects');
-Route::get('course/subjects',[WebController::class,'courseSubjects'])->name('courseSubjects');
+
+// Route::get('instructors',function () {
+//     $instructors = Instructor::with('image')->get();
+//     return view('web.instructors',get_defined_vars());
+// })->name('instructors');
+
 Route::get('playlist/{data}',[WebController::class,'playlist'])->name('playlist');
+
+Route::get('course/subjects',[WebController::class,'courseSubjects'])->name('courseSubjects');
 Route::get('video/{lessonId}',[WebController::class,'video'])->name('video');
 Route::get('exam/{subId}',[WebController::class,'exam'])->name('exam');
 Route::post('submitExam/{subId}',[WebController::class,'submitExam'])->name('submitExam');

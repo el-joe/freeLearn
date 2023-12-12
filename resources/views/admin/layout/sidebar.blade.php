@@ -50,6 +50,22 @@
             ]
         ],
         [
+            'name' => 'Instructors',
+            'icon' => 'fa fa-desktop',
+            'sub'=> [
+                [
+                    'name' => 'List',
+                    'route' => 'admin.instructors.index',
+                    'icon' => 'fa fa-desktop',
+                ],
+                [
+                    'name' => 'New',
+                    'route' => 'admin.instructors.create',
+                    'icon' => 'fa fa-desktop',
+                ]
+            ]
+        ],
+        [
             'name' => 'Lessons',
             'icon' => 'fa fa-desktop',
             'sub'=> [

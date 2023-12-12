@@ -1,30 +1,30 @@
 @extends('admin.layout.index')
 
-@section('title', 'Subscriptions')
+@section('title', 'Instructors')
 
 @section('content')
 <div class="content-panel" style="margin:20px">
     <div class="adv-table">
-        <div class="col-sm-12 text-center">
-            <a href="{{request()->fullUrl()}}?export=1" target="_blank" class="btn btn-success">Export To Excel</a>
-        </div>
       <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered dtable">
         <thead>
           <tr>
             <th>#</th>
-            <th>IP</th>
-            <th>Details</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($subscriptions as $subscription)
+          @foreach ($instructors as $instructor)
             <tr>
-                <td>{{$subscription->id}}</td>
-                <td>{{$subscription->ip}}</td>
+                <td>{{$instructor->id}}</td>
+                <td>{{$instructor->name}}</td>
                 <td>
-                    Subject : {{$subscription->lesson?->subject?->name}} <br>
-                    Year : {{$subscription->lesson?->academicYear?->name}} <br>
-                    Lesson : {{$subscription->lesson?->name}}
+                    <img src="{{optional($instructor->getRelation('image'))->file_path}}" alt="" height="100">
+                </td>
+                <td>
+                    <a href="{{route('admin.instructors.edit', $instructor->id)}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                    <a href="{{route('admin.instructors.destroy', $instructor->id)}}" class="btn btn-danger btn-xs deleteThis"><i class="fa fa-trash-o "></i></a>
                 </td>
           @endforeach
         </tbody>
