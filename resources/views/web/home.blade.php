@@ -142,8 +142,9 @@
                             fill="white" />
                     </svg>
                 </div>
+                <?php $newSubject = ['national'=>'Arabic Schools','international'=>'Language Schools']; ?>
                 <h1 class="font-medium text-xl mb-3 lg:px-14 text-darken">
-                    {{strtoupper($subject)}}
+                    {{strtoupper($newSubject[$subject] ?? 'course')}}
                 </h1>
                 <p>
                     <?php $settingName = App\Models\Setting::whereColumnName($key)->first()  ?>
