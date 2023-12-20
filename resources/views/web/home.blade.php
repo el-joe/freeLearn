@@ -142,7 +142,7 @@
                             fill="white" />
                     </svg>
                 </div>
-                <?php $newSubject = ['national'=>'Arabic Schools','international'=>'Language Schools']; ?>
+                <?php $newSubject = ['national'=>'Language Schools','international'=>'Arabic Schools']; ?>
                 <h1 class="font-medium text-xl mb-3 lg:px-14 text-darken">
                     {{strtoupper($newSubject[$subject] ?? 'course')}}
                 </h1>
