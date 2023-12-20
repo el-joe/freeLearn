@@ -144,7 +144,7 @@
                 </div>
                 <?php $newSubject = ['national'=>'Language Schools','international'=>'Arabic Schools']; ?>
                 <h1 class="font-medium text-xl mb-3 lg:px-14 text-darken">
-                    {{strtoupper($newSubject[$subject] ?? 'course')}}
+                    {{strtoupper($newSubject[$subject] ?? 'courses')}}
                 </h1>
                 <p>
                     <?php $settingName = App\Models\Setting::whereColumnName($key)->first()  ?>
